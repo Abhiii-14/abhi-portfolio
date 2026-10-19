@@ -1,0 +1,525 @@
+/**
+ * LAYOUT ARCHITECTURE
+ * 
+ * - Sticky editorial header with minimal wordmark & active indicators
+ * - Inverted Hero Section (deep ink, paper text, asymmetric portrait interaction)
+ * - Numbered Editorial Index Strip
+ * - Responsive breakpoints for 360px, 768px, 1024px, 1280px, 1920px
+ */
+
+/* Container & Sections */
+.site-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.site-section {
+  padding: var(--space-3xl) 0;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .site-container {
+    padding: 0 var(--space-md);
+  }
+  .site-section {
+    padding: var(--space-2xl) 0;
+  }
+}
+
+/* SECTION HEADERS (Editorial Header Band) */
+.section-header-band {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--rule-ink);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.section-header-band .meta-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* 1. EDITORIAL HEADER & NAVIGATION */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hero-rule);
+  transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+/* When scrolled past hero, header transitions to warm paper scheme */
+.site-header.header-light {
+  background-color: rgba(242, 239, 230, 0.94);
+  border-bottom-color: var(--rule-ink);
+}
+
+.site-header.header-light .site-wordmark,
+.site-header.header-light .nav-link {
+  color: var(--color-ink);
+}
+
+.site-header.header-light .nav-link:hover,
+.site-header.header-light .nav-link.active {
+  color: var(--color-orange);
+}
+
+.site-header.header-light .mobile-menu-btn span {
+  background-color: var(--color-ink);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.site-wordmark {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--hero-text);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.site-wordmark .brand-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-orange);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Desktop Navigation */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-lg);
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hero-text-muted);
+  position: relative;
+  padding: var(--space-xs) 0;
+}
+
+.nav-link:hover {
+  color: var(--hero-text);
+}
+
+.nav-link.active {
+  color: var(--hero-text);
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-orange);
+}
+
+/* Mobile Hamburger Button */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--hero-rule);
+  padding: 8px 10px;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--hero-text);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.mobile-menu-btn[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-btn[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Nav Drawer */
+@media (max-width: 820px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background-color: var(--hero-bg);
+    border-bottom: 2px solid var(--color-orange);
+    padding: var(--space-lg);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main-nav.is-open {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+    width: 100%;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--hero-rule);
+  }
+}
+
+/* 2. HERO SECTION (INVERTED PALETTE) */
+.hero-section {
+  background-color: var(--hero-bg);
+  color: var(--hero-text);
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero Asymmetric Composition */
+.hero-editorial-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-2xl);
+  align-items: center;
+  position: relative;
+  padding: var(--space-xl) 0 var(--space-2xl) 0;
+}
+
+.hero-text-column {
+  z-index: 5;
+  position: relative;
+}
+
+.hero-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-orange);
+  margin-bottom: var(--space-lg);
+  padding: 4px 10px;
+  background-color: rgba(212, 75, 50, 0.12);
+  border: 1px solid rgba(212, 75, 50, 0.3);
+}
+
+.hero-headline {
+  margin-bottom: var(--space-lg);
+  color: var(--hero-text);
+}
+
+.hero-lead {
+  color: var(--hero-text-muted);
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  line-height: 1.6;
+  max-width: 52ch;
+  margin-bottom: var(--space-xl);
+}
+
+.hero-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  border-top: 1px solid var(--hero-rule);
+  padding-top: var(--space-md);
+}
+
+.spec-item .spec-label {
+  display: block;
+  color: #9E9E9E;
+  margin-bottom: var(--space-2xs);
+  font-size: 0.72rem;
+}
+
+.spec-item .spec-value {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: #FFFFFF;
+}
+
+/* PORTRAIT ARTIFACT CONTAINER */
+.hero-portrait-column {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.portrait-artifact-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+}
+
+.portrait-artifact-backdrop-glow {
+  position: absolute;
+  top: -12%;
+  left: -12%;
+  width: 124%;
+  height: 124%;
+  background: radial-gradient(circle at 50% 38%, rgba(212, 75, 50, 0.28) 0%, rgba(255, 255, 255, 0.03) 45%, transparent 72%);
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.portrait-artifact-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  border-top: 1px solid var(--color-orange);
+  border-right: 1px solid var(--color-orange);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.portrait-artifact-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: -15px;
+  width: 40px;
+  height: 40px;
+  border-bottom: 1px solid #444444;
+  border-left: 1px solid #444444;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.portrait-artifact {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: #000000;
+  overflow: hidden;
+  border: 1px solid var(--hero-rule);
+  cursor: crosshair;
+  z-index: 2;
+}
+
+/* Underlying real image (or fallback) */
+.portrait-base-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Canvas overlay for interactive halftone / duotone cursor reveal */
+.portrait-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* Mono Annotations with fine leader lines */
+.portrait-annotation-tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background-color: rgba(0, 0, 0, 0.92);
+  padding: 4px 8px;
+  border: 1px solid var(--color-orange);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.portrait-coords-tag {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  background-color: rgba(0, 0, 0, 0.92);
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #9E9E9E;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Editorial Overlap: Large Serif title overlapping portrait edge on desktop */
+@media (min-width: 1024px) {
+  .hero-headline {
+    margin-right: -40px;
+    position: relative;
+    z-index: 10;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  .hero-portrait-column {
+    order: -1;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+/* 3. NUMBERED HERO INDEX STRIP (#01 #02 #03 #04) */
+.hero-index-strip {
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #000000;
+  position: relative;
+  z-index: 10;
+}
+
+.index-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+
+.index-strip-item {
+  display: block;
+  padding: var(--space-md) var(--space-lg);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  position: relative;
+}
+
+.index-strip-item:last-child {
+  border-right: none;
+}
+
+.index-strip-item:hover,
+.index-strip-item:focus {
+  background-color: #141414;
+}
+
+.index-strip-item:hover .item-num,
+.index-strip-item:focus .item-num {
+  color: #FFFFFF;
+}
+
+.index-strip-item .item-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-orange);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-2xs);
+  transition: color var(--transition-fast);
+}
+
+.index-strip-item .item-title {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #FFFFFF;
+  margin-bottom: 2px;
+}
+
+.index-strip-item .item-meta {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #888888;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 820px) {
+  .index-strip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .index-strip-item:nth-child(2) {
+    border-right: none;
+  }
+  .index-strip-item:nth-child(-n+2) {
+    border-bottom: 1px solid var(--hero-rule);
+  }
+}
+
+@media (max-width: 480px) {
+  .index-strip-grid {
+    grid-template-columns: 1fr;
+  }
+  .index-strip-item {
+    border-right: none !important;
+    border-bottom: 1px solid var(--hero-rule);
+    padding: var(--space-sm) var(--space-md);
+  }
+}

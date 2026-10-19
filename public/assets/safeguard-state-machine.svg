@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="100%" height="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#D44B32" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#535C51" />
+    </marker>
+  </defs>
+
+  <rect width="760" height="380" fill="#F8F6F0" rx="4"/>
+  <rect x="10" y="10" width="740" height="360" fill="none" stroke="#20251F" stroke-width="1.2"/>
+
+  <!-- Diagram Title -->
+  <text x="30" y="38" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="600" letter-spacing="1.5">FSM-01: SAFEGUARD LATCHING FINITE STATE MACHINE</text>
+  <text x="730" y="38" text-anchor="end" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing="1">DETERMINISTIC BEHAVIOR</text>
+  <line x1="30" y1="50" x2="730" y2="50" stroke="#20251F" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Boot Origin Dot -->
+  <circle cx="80" cy="180" r="10" fill="#20251F"/>
+  <circle cx="80" cy="180" r="5" fill="#F2EFE6"/>
+  <line x1="90" y1="180" x2="160" y2="180" stroke="#535C51" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="120" y="168" text-anchor="middle" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="8.5">BOOT / PWR</text>
+
+  <!-- STATE: NORMAL (Green) -->
+  <g transform="translate(170, 110)">
+    <rect x="0" y="0" width="190" height="140" fill="#FFFFFF" stroke="#20251F" stroke-width="1.8" rx="4"/>
+    <rect x="0" y="0" width="190" height="30" fill="#20251F" rx="4 4 0 0"/>
+    <text x="95" y="20" text-anchor="middle" fill="#F2EFE6" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="600" letter-spacing="1">STATE_NORMAL</text>
+    
+    <circle cx="25" cy="55" r="7" fill="#7C9862"/>
+    <text x="40" y="59" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="9">GREEN_LED = ON</text>
+    
+    <circle cx="25" cy="80" r="7" fill="#E5E1D5" stroke="#535C51" stroke-width="1"/>
+    <text x="40" y="84" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="9">RED_LED = OFF</text>
+    
+    <circle cx="25" cy="105" r="7" fill="#E5E1D5" stroke="#535C51" stroke-width="1"/>
+    <text x="40" y="109" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="9">BUZZER = SILENT</text>
+    
+    <text x="95" y="130" text-anchor="middle" fill="#7C9862" font-family="'IBM Plex Mono', monospace" font-size="8">[REQ-001, REQ-002]</text>
+  </g>
+
+  <!-- TRANSITION: NORMAL -> EMERGENCY -->
+  <path d="M 360 145 C 430 115 480 115 520 145" fill="none" stroke="#D44B32" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="390" y="90" width="120" height="32" fill="#FFF2EE" stroke="#D44B32" stroke-width="1"/>
+  <text x="450" y="105" text-anchor="middle" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="8.5" font-weight="600">EMERGENCY EVENT</text>
+  <text x="450" y="117" text-anchor="middle" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="7.5">SW1 Pressed OR AI Fire</text>
+
+  <!-- STATE: EMERGENCY (Red / Latched) -->
+  <g transform="translate(530, 110)">
+    <rect x="0" y="0" width="190" height="140" fill="#FFF8F6" stroke="#D44B32" stroke-width="2.2" rx="4"/>
+    <rect x="0" y="0" width="190" height="30" fill="#D44B32" rx="4 4 0 0"/>
+    <text x="95" y="20" text-anchor="middle" fill="#FFFFFF" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="600" letter-spacing="1">STATE_EMERGENCY</text>
+    
+    <circle cx="25" cy="55" r="7" fill="#D44B32"/>
+    <text x="40" y="59" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600">RED_LED = ON</text>
+    
+    <circle cx="25" cy="80" r="7" fill="#D44B32"/>
+    <text x="40" y="84" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600">BUZZER = SOUNDING</text>
+    
+    <circle cx="25" cy="105" r="7" fill="#E5E1D5" stroke="#535C51" stroke-width="1"/>
+    <text x="40" y="109" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="9">GREEN_LED = OFF</text>
+    
+    <text x="95" y="130" text-anchor="middle" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="600">[REQ-003, REQ-004]</text>
+  </g>
+
+  <!-- SELF LOOP: LATCHING BEHAVIOR ON RELEASE -->
+  <path d="M 690 120 C 740 80 770 180 725 180" fill="none" stroke="#D44B32" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#arrow)"/>
+  <text x="735" y="205" text-anchor="middle" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="600">BUTTON RELEASE</text>
+  <text x="735" y="217" text-anchor="middle" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="7.5">LATCHED [REQ-005]</text>
+
+  <!-- TRANSITION: EMERGENCY -> NORMAL (RESET) -->
+  <path d="M 530 220 C 475 250 415 250 360 220" fill="none" stroke="#535C51" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+  <rect x="390" y="240" width="120" height="32" fill="#F4F8F0" stroke="#535C51" stroke-width="1"/>
+  <text x="450" y="255" text-anchor="middle" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="8.5" font-weight="600">RESET EVENT</text>
+  <text x="450" y="267" text-anchor="middle" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="7.5">SW2 Pressed [REQ-006]</text>
+
+  <!-- UART TELEMETRY FOOTNOTE -->
+  <g transform="translate(30, 310)">
+    <rect x="0" y="0" width="700" height="35" fill="#FFFFFF" stroke="#20251F" stroke-width="0.8"/>
+    <text x="15" y="18" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="8.5" font-weight="600">REQ-007 UART TELEMETRY:</text>
+    <text x="160" y="18" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="8">Every transition broadcasts: "STATE_CHANGE: [TIMESTAMP] PREV -> CURR | CAUSE: [INTERRUPT_ID]" at 115200 baud.</text>
+  </g>
+</svg>

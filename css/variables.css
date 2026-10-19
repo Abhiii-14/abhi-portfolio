@@ -1,0 +1,76 @@
+/**
+ * DESIGN SYSTEM — CSS CUSTOM PROPERTIES
+ * 
+ * Palette:
+ * - Warm paper: #F2EFE6
+ * - Deep ink: #20251F
+ * - Signal orange: #D44B32 (accents & focus only)
+ * - Muted sage: #B8C5A8
+ * - Occasional cobalt: #315BEA
+ * 
+ * Inverted Hero: deep ink background, paper text.
+ * Rest of site: warm paper background, ink text.
+ */
+
+:root {
+  /* Core Palette */
+  --color-paper: #101113;
+  --color-paper-dim: #191A1D;
+  --color-paper-card: #18191C;
+  --color-ink: #ECEAE4;
+  --color-ink-muted: #B0B0AA;
+  --color-ink-soft: #92938D;
+  --color-orange: #E8795F;
+  --color-orange-subtle: rgba(232, 121, 95, 0.14);
+  --color-orange-hover: #F09178;
+  --color-sage: #B8C5A8;
+  --color-sage-dark: #A7C58D;
+  --color-cobalt: #8098FF;
+  --color-cobalt-subtle: rgba(128, 152, 255, 0.14);
+
+  /* Editorial Fine Rules */
+  --rule-ink: rgba(236, 234, 228, 0.14);
+  --rule-ink-strong: rgba(236, 234, 228, 0.32);
+  --rule-paper: rgba(242, 239, 230, 0.16);
+  --rule-paper-strong: rgba(242, 239, 230, 0.4);
+
+  /* Inverted Hero / Fieldwork Scheme — Fully Black (#000000) & Neutral Monochrome */
+  --hero-bg: #090A0B;
+  --hero-bg-deep: #070809;
+  --hero-text: #FFFFFF;
+  --hero-text-muted: #B0B0AA;
+  --hero-rule: rgba(255, 255, 255, 0.14);
+  --hero-card-bg: #121315;
+
+  /* Typography Stacks */
+  --font-serif: 'Newsreader', Garamond, Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  /* Layout Spacing */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3.5rem;
+  --space-2xl: 5.5rem;
+  --space-3xl: 8rem;
+
+  --max-width: 1360px;
+  --content-width: 1140px;
+  --narrow-width: 820px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.2, 0, 0, 1);
+  --transition-smooth: 260ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Elevation & Shadows (restrained, no neon glows) */
+  --shadow-subtle: 0 8px 24px rgba(0, 0, 0, 0.22);
+  --shadow-editorial: 4px 4px 0px rgba(0, 0, 0, 0.28);
+  --shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.55);
+
+  /* Focus Indicator (Signal Orange) */
+  --focus-ring: 2px solid var(--color-orange);
+  --focus-offset: 3px;
+}

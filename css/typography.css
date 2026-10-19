@@ -1,0 +1,182 @@
+/**
+ * TYPOGRAPHY & TEXT STYLES
+ * 
+ * - Headlines: Newsreader (tight leading, optical sizing, italic emphasis)
+ * - Body/UI: Inter
+ * - Technical metadata: IBM Plex Mono (small, uppercase, letter-spaced)
+ * Fluid typography via clamp()
+ */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap');
+
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  line-height: 1.65;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+}
+
+/* Fluid Heading Typography */
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: inherit;
+  margin: 0;
+  font-feature-settings: "liga", "dlig", "kern";
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.display-title {
+  font-size: clamp(3rem, 7.5vw, 6.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+}
+
+.display-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-orange);
+}
+
+.section-title {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-md);
+}
+
+.sub-title {
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+/* Technical Metadata (IBM Plex Mono) */
+.mono-meta,
+.section-num,
+.tag,
+.badge,
+.spec-label,
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.85vw, 0.8125rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.section-num {
+  color: var(--color-orange);
+  margin-right: var(--space-xs);
+}
+
+/* Paragraphs & Editorial Body */
+p {
+  margin: 0 0 var(--space-md) 0;
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+p.lead {
+  font-size: clamp(1.15rem, 1.4vw, 1.35rem);
+  line-height: 1.6;
+  color: inherit;
+  max-width: 65ch;
+}
+
+p.muted {
+  color: var(--color-ink-muted);
+}
+
+/* Editorial Rules */
+hr.editorial-rule {
+  border: none;
+  height: 1px;
+  background-color: var(--rule-ink);
+  margin: var(--space-xl) 0;
+  width: 100%;
+}
+
+.inverted hr.editorial-rule {
+  background-color: var(--rule-paper);
+}
+
+/* Links & Focus States */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-orange);
+}
+
+a.text-link {
+  border-bottom: 1px solid var(--color-ink-muted);
+  padding-bottom: 2px;
+}
+
+a.text-link:hover {
+  border-bottom-color: var(--color-orange);
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Skip to Content for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-md);
+  background: var(--color-orange);
+  color: #FFFFFF;
+  padding: var(--space-xs) var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-md);
+}
+
+/* Reduced Motion Respect */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *:before, *:after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

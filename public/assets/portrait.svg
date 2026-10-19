@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="100%" height="100%">
+  <defs>
+    <!-- Technical Background Grid -->
+    <pattern id="techGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#2D352B" stroke-width="0.75" opacity="0.6"/>
+      <circle cx="24" cy="24" r="1" fill="#D44B32" opacity="0.4"/>
+    </pattern>
+    
+    <!-- Linear Gradients for Editorial Halftone feel -->
+    <linearGradient id="inkToOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#20251F"/>
+      <stop offset="65%" stop-color="#2E372C"/>
+      <stop offset="100%" stop-color="#D44B32" stop-opacity="0.85"/>
+    </linearGradient>
+
+    <radialGradient id="authorGaze" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#E5E1D5" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#B8C5A8" stop-opacity="0.8"/>
+      <stop offset="85%" stop-color="#20251F" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#181C17"/>
+    </radialGradient>
+
+    <!-- Halftone Dot Pattern Def -->
+    <pattern id="halftoneDots" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="5" cy="5" r="2.2" fill="#D44B32" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Dark Engineering Background -->
+  <rect width="600" height="750" fill="#1C211B"/>
+  <rect width="600" height="750" fill="url(#techGrid)"/>
+
+  <!-- Technical Framing Lines & Registry Marks -->
+  <g stroke="#D44B32" stroke-width="1" opacity="0.7">
+    <!-- Top-left corner mark -->
+    <path d="M 25 45 L 25 25 L 45 25" fill="none"/>
+    <circle cx="25" cy="25" r="2" fill="#D44B32"/>
+    
+    <!-- Top-right corner mark -->
+    <path d="M 575 45 L 575 25 L 555 25" fill="none"/>
+    <circle cx="575" cy="25" r="2" fill="#D44B32"/>
+
+    <!-- Bottom-left corner mark -->
+    <path d="M 25 705 L 25 725 L 45 725" fill="none"/>
+    <circle cx="25" cy="725" r="2" fill="#D44B32"/>
+
+    <!-- Bottom-right corner mark -->
+    <path d="M 575 705 L 575 725 L 555 725" fill="none"/>
+    <circle cx="575" cy="725" r="2" fill="#D44B32"/>
+
+    <!-- Optical center crosshairs -->
+    <line x1="300" y1="15" x2="300" y2="35"/>
+    <line x1="300" y1="715" x2="300" y2="735"/>
+    <line x1="15" y1="375" x2="35" y2="375"/>
+    <line x1="565" y1="375" x2="585" y2="375"/>
+  </g>
+
+  <!-- Technical Annotations (IBM Plex Mono style) -->
+  <text x="35" y="42" fill="#B8C5A8" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing="2">SPEC: PORTRAIT_ARTIFACT // EXP-01</text>
+  <text x="565" y="42" text-anchor="end" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing="2">CALIBRATED // 100%</text>
+  <text x="35" y="720" fill="#B8C5A8" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing="1">OPTICAL ISO 400 // COORD: 12.97°N 77.59°E</text>
+  <text x="565" y="720" text-anchor="end" fill="#B8C5A8" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing="2">FIG. 01</text>
+
+  <!-- Silhouette / Portrait Vector Figure -->
+  <g id="portrait-subject" transform="translate(30, 20)">
+    <!-- Ambient Silhouette Backing -->
+    <path d="M 170 660 C 170 540 200 480 250 450 C 210 420 190 370 190 290 C 190 170 230 110 320 110 C 410 110 450 170 450 290 C 450 370 430 420 390 450 C 440 480 470 540 470 660 Z" fill="#20251F"/>
+
+    <!-- Shoulders and Torso -->
+    <path d="M 120 700 C 130 570 190 490 260 460 L 380 460 C 450 490 510 570 520 700 Z" fill="url(#inkToOrange)" opacity="0.95"/>
+    
+    <!-- Torso Contour Details -->
+    <path d="M 260 460 L 290 560 L 350 560 L 380 460" fill="none" stroke="#B8C5A8" stroke-width="1.5" opacity="0.6"/>
+    <path d="M 320 560 L 320 700" fill="none" stroke="#20251F" stroke-width="2"/>
+
+    <!-- Neck & Jawline -->
+    <path d="M 275 420 L 275 470 C 290 485 350 485 365 470 L 365 420 Z" fill="#B8C5A8" opacity="0.8"/>
+    <path d="M 275 425 C 310 445 330 445 365 425" fill="none" stroke="#20251F" stroke-width="2"/>
+
+    <!-- Head & Face Block -->
+    <path d="M 220 280 C 220 160 250 120 320 120 C 390 120 420 160 420 280 C 420 380 390 430 320 430 C 250 430 220 380 220 280 Z" fill="url(#authorGaze)"/>
+
+    <!-- Hair Silhouette -->
+    <path d="M 215 270 C 215 150 250 100 320 100 C 390 100 425 150 425 270 C 410 210 390 190 370 190 C 340 190 325 210 300 200 C 275 190 250 200 230 240 C 220 260 215 270 215 270 Z" fill="#1C211B"/>
+    
+    <!-- Hair Texture Hatching -->
+    <path d="M 260 140 Q 320 110 380 145" fill="none" stroke="#B8C5A8" stroke-width="1.5" opacity="0.4"/>
+    <path d="M 250 160 Q 310 130 370 170" fill="none" stroke="#D44B32" stroke-width="1" opacity="0.5"/>
+
+    <!-- Eyes / Brow Level Annotation Lines -->
+    <line x1="210" y1="275" x2="430" y2="275" stroke="#D44B32" stroke-width="0.75" stroke-dasharray="4 4" opacity="0.6"/>
+    <text x="438" y="278" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="8">AXIS: Y-275</text>
+
+    <!-- Brow and Eye Geometry -->
+    <path d="M 260 265 C 275 260 290 262 300 268" fill="none" stroke="#20251F" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 340 268 C 350 262 365 260 380 265" fill="none" stroke="#20251F" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Glasses Frame (Engineering Aesthetic) -->
+    <rect x="250" y="260" width="55" height="38" rx="6" fill="none" stroke="#20251F" stroke-width="3.5"/>
+    <rect x="250" y="260" width="55" height="38" rx="6" fill="#F2EFE6" fill-opacity="0.15"/>
+    <rect x="335" y="260" width="55" height="38" rx="6" fill="none" stroke="#20251F" stroke-width="3.5"/>
+    <rect x="335" y="260" width="55" height="38" rx="6" fill="#F2EFE6" fill-opacity="0.15"/>
+    <line x1="305" y1="275" x2="335" y2="275" stroke="#20251F" stroke-width="3"/>
+    <line x1="230" y1="270" x2="250" y2="275" stroke="#20251F" stroke-width="2.5"/>
+    <line x1="390" y1="275" x2="410" y2="270" stroke="#20251F" stroke-width="2.5"/>
+
+    <!-- Nose Bridge -->
+    <path d="M 320 275 L 315 325 L 328 327" fill="none" stroke="#20251F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Mouth -->
+    <path d="M 298 365 C 312 370 328 370 342 365" fill="none" stroke="#20251F" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <!-- Jaw Contour Shading -->
+    <path d="M 255 350 C 270 410 320 425 320 425 C 320 425 370 410 385 350" fill="none" stroke="#20251F" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.6"/>
+
+    <!-- Halftone Texture Overlay on Right Cheek -->
+    <rect x="330" y="290" width="60" height="90" fill="url(#halftoneDots)" opacity="0.8"/>
+  </g>
+
+  <!-- Leader Line and Annotation Box (FIG. 01 / THE AUTHOR) -->
+  <g id="leader-annotation">
+    <circle cx="280" cy="280" r="3" fill="#D44B32"/>
+    <line x1="280" y1="280" x2="160" y2="210" stroke="#D44B32" stroke-width="1.2"/>
+    <line x1="160" y1="210" x2="80" y2="210" stroke="#D44B32" stroke-width="1.2"/>
+    
+    <rect x="75" y="180" width="130" height="26" fill="#20251F" stroke="#D44B32" stroke-width="1"/>
+    <text x="85" y="197" fill="#F2EFE6" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="600" letter-spacing="1.5">FIG. 01 / AUTHOR</text>
+  </g>
+
+  <!-- Secondary Leader Line for Hardware Focus -->
+  <g id="leader-hardware">
+    <circle cx="370" cy="540" r="3" fill="#B8C5A8"/>
+    <line x1="370" y1="540" x2="470" y2="590" stroke="#B8C5A8" stroke-width="1.2"/>
+    <line x1="470" y1="590" x2="540" y2="590" stroke="#B8C5A8" stroke-width="1.2"/>
+    <text x="470" y="582" fill="#B8C5A8" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing="1">REF: DEV-KIT_01</text>
+  </g>
+
+  <!-- Vignette Grain Border -->
+  <rect x="15" y="15" width="570" height="720" fill="none" stroke="#F2EFE6" stroke-width="0.75" opacity="0.25"/>
+</svg>

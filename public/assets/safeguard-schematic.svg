@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="100%" height="100%">
+  <defs>
+    <pattern id="schematicGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E5E1D5" stroke-width="0.75"/>
+      <circle cx="20" cy="20" r="0.8" fill="#535C51" opacity="0.3"/>
+    </pattern>
+    <filter id="subtleShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#20251F" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Technical Background -->
+  <rect width="880" height="500" fill="#FBF9F5"/>
+  <rect width="880" height="500" fill="url(#schematicGrid)"/>
+
+  <!-- Border & Technical Title Block -->
+  <rect x="20" y="20" width="840" height="460" fill="none" stroke="#20251F" stroke-width="1.5"/>
+  
+  <!-- Title Block Bottom Right -->
+  <rect x="520" y="420" width="340" height="60" fill="#F2EFE6" stroke="#20251F" stroke-width="1.2"/>
+  <line x1="520" y1="448" x2="860" y2="448" stroke="#20251F" stroke-width="0.8"/>
+  <text x="535" y="438" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="600" letter-spacing="1">DWG: SAFEGUARD-ESP32-SCHEMATIC // REV 1.1</text>
+  <text x="535" y="468" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing="0.5">VERIFIED REQ-001 - REQ-007 // STATUS: TESTED</text>
+  <text x="845" y="468" text-anchor="end" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600">SHEET 1/1</text>
+
+  <!-- 1. INPUT BLOCK (LEFT) -->
+  <g id="input-circuits" transform="translate(50, 60)">
+    <rect x="0" y="0" width="180" height="340" fill="#FFFFFF" stroke="#20251F" stroke-width="1.2" filter="url(#subtleShadow)"/>
+    <rect x="0" y="0" width="180" height="28" fill="#20251F"/>
+    <text x="90" y="19" text-anchor="middle" fill="#F2EFE6" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="600" letter-spacing="1">INPUT BLOCK</text>
+
+    <!-- Emergency Button Unit -->
+    <g transform="translate(20, 50)">
+      <rect x="0" y="0" width="140" height="85" fill="#F8F6F0" stroke="#D44B32" stroke-width="1.2"/>
+      <circle cx="70" cy="35" r="16" fill="#D44B32"/>
+      <circle cx="70" cy="35" r="10" fill="#B33822"/>
+      <text x="70" y="68" text-anchor="middle" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600">EMERGENCY BUTTON</text>
+      <text x="70" y="79" text-anchor="middle" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="8">SW1 (NO) / GPIO 18</text>
+    </g>
+
+    <!-- Reset Button Unit -->
+    <g transform="translate(20, 155)">
+      <rect x="0" y="0" width="140" height="85" fill="#F8F6F0" stroke="#20251F" stroke-width="1"/>
+      <circle cx="70" cy="35" r="14" fill="#B8C5A8" stroke="#20251F" stroke-width="1.5"/>
+      <circle cx="70" cy="35" r="8" fill="#535C51"/>
+      <text x="70" y="68" text-anchor="middle" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600">MANUAL RESET</text>
+      <text x="70" y="79" text-anchor="middle" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="8">SW2 (NO) / GPIO 19</text>
+    </g>
+
+    <!-- Camera / Vision Input -->
+    <g transform="translate(20, 260)">
+      <rect x="0" y="0" width="140" height="65" fill="#F8F6F0" stroke="#315BEA" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="70" y="24" text-anchor="middle" fill="#315BEA" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600">CAMERA VISION FEED</text>
+      <text x="70" y="38" text-anchor="middle" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="8">PyTorch Model (Serial)</text>
+      <text x="70" y="52" text-anchor="middle" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="7.5" font-weight="600">[PROTOTYPE STAGE]</text>
+    </g>
+  </g>
+
+  <!-- 2. CENTRAL MICROCONTROLLER (ESP32) -->
+  <g id="mcu-block" transform="translate(320, 45)">
+    <rect x="0" y="0" width="240" height="370" fill="#20251F" rx="4" filter="url(#subtleShadow)"/>
+    
+    <!-- Chip Shield Metal Header -->
+    <rect x="25" y="20" width="190" height="90" fill="#2D352B" stroke="#B8C5A8" stroke-width="0.8" rx="2"/>
+    <text x="120" y="55" text-anchor="middle" fill="#F2EFE6" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" letter-spacing="1">ESP32-WROOM-32</text>
+    <text x="120" y="75" text-anchor="middle" fill="#B8C5A8" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing="1">DUAL CORE 240MHz</text>
+    <text x="120" y="92" text-anchor="middle" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="8" letter-spacing="0.5">ESP-IDF v5.5 FIRMWARE</text>
+
+    <!-- Pin Terminals (Left Side - Inputs) -->
+    <g font-family="'IBM Plex Mono', monospace" font-size="8" fill="#F2EFE6">
+      <!-- GPIO 18 Emergency -->
+      <line x1="-15" y1="140" x2="0" y2="140" stroke="#D44B32" stroke-width="2.5"/>
+      <circle cx="-15" cy="140" r="3" fill="#D44B32"/>
+      <text x="12" y="143">GPIO 18 [IN_PULLUP]</text>
+
+      <!-- GPIO 19 Reset -->
+      <line x1="-15" y1="210" x2="0" y2="210" stroke="#20251F" stroke-width="2.5"/>
+      <circle cx="-15" cy="210" r="3" fill="#B8C5A8"/>
+      <text x="12" y="213">GPIO 19 [IN_PULLUP]</text>
+
+      <!-- RXD0 Serial -->
+      <line x1="-15" y1="285" x2="0" y2="285" stroke="#315BEA" stroke-width="1.8"/>
+      <circle cx="-15" cy="285" r="3" fill="#315BEA"/>
+      <text x="12" y="288">RXD0 (GPIO 3)</text>
+    </g>
+
+    <!-- Pin Terminals (Right Side - Outputs) -->
+    <g font-family="'IBM Plex Mono', monospace" font-size="8" fill="#F2EFE6">
+      <!-- GPIO 22 Red LED -->
+      <line x1="240" y1="140" x2="255" y2="140" stroke="#D44B32" stroke-width="2.5"/>
+      <circle cx="255" cy="140" r="3" fill="#D44B32"/>
+      <text x="228" y="143" text-anchor="end">GPIO 22 [RED_LED]</text>
+
+      <!-- GPIO 23 Buzzer -->
+      <line x1="240" y1="190" x2="255" y2="190" stroke="#D44B32" stroke-width="2.5"/>
+      <circle cx="255" cy="190" r="3" fill="#D44B32"/>
+      <text x="228" y="193" text-anchor="end">GPIO 23 [BUZZER]</text>
+
+      <!-- GPIO 21 Green LED -->
+      <line x1="240" y1="240" x2="255" y2="240" stroke="#B8C5A8" stroke-width="2.5"/>
+      <circle cx="255" cy="240" r="3" fill="#B8C5A8"/>
+      <text x="228" y="243" text-anchor="end">GPIO 21 [GRN_LED]</text>
+
+      <!-- TXD0 Serial Telemetry -->
+      <line x1="240" y1="310" x2="255" y2="310" stroke="#535C51" stroke-width="1.8"/>
+      <circle cx="255" cy="310" r="3" fill="#535C51"/>
+      <text x="228" y="313" text-anchor="end">TXD0 (115200 BAUD)</text>
+    </g>
+
+    <!-- State Indicator Core Box -->
+    <rect x="30" y="330" width="180" height="28" fill="#181C17" stroke="#D44B32" stroke-width="0.8"/>
+    <text x="120" y="348" text-anchor="middle" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="8.5" font-weight="600" letter-spacing="1">STATE: LATCHING ENGINE</text>
+  </g>
+
+  <!-- 3. OUTPUT BLOCK (RIGHT) -->
+  <g id="output-circuits" transform="translate(650, 60)">
+    <rect x="0" y="0" width="180" height="340" fill="#FFFFFF" stroke="#20251F" stroke-width="1.2" filter="url(#subtleShadow)"/>
+    <rect x="0" y="0" width="180" height="28" fill="#20251F"/>
+    <text x="90" y="19" text-anchor="middle" fill="#F2EFE6" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="600" letter-spacing="1">ACTUATOR BLOCK</text>
+
+    <!-- Red Alert LED & Resistor -->
+    <g transform="translate(20, 45)">
+      <rect x="0" y="0" width="140" height="65" fill="#FFF5F3" stroke="#D44B32" stroke-width="1.2"/>
+      <circle cx="35" cy="32" r="12" fill="#D44B32"/>
+      <text x="60" y="28" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600">RED LED (3mm)</text>
+      <text x="60" y="42" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="8">330Ω Limiting Res.</text>
+      <text x="60" y="54" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="7.5" font-weight="600">[REQ-004: LATCHED]</text>
+    </g>
+
+    <!-- Active Buzzer -->
+    <g transform="translate(20, 120)">
+      <rect x="0" y="0" width="140" height="65" fill="#FFF5F3" stroke="#D44B32" stroke-width="1.2"/>
+      <circle cx="35" cy="32" r="14" fill="#20251F"/>
+      <circle cx="35" cy="32" r="5" fill="#D44B32"/>
+      <text x="60" y="28" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600">3.3V PIEZO BUZZER</text>
+      <text x="60" y="42" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="8">Audible Alarm Pulse</text>
+      <text x="60" y="54" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="7.5" font-weight="600">[REQ-004: SOUNDS]</text>
+    </g>
+
+    <!-- Green Normal Status LED -->
+    <g transform="translate(20, 195)">
+      <rect x="0" y="0" width="140" height="65" fill="#F4F8F0" stroke="#B8C5A8" stroke-width="1.2"/>
+      <circle cx="35" cy="32" r="12" fill="#7C9862"/>
+      <text x="60" y="28" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600">GREEN LED (3mm)</text>
+      <text x="60" y="42" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="8">330Ω Limiting Res.</text>
+      <text x="60" y="54" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="7.5">[REQ-002: NORMAL ON]</text>
+    </g>
+
+    <!-- Telemetry Link Indicator -->
+    <g transform="translate(20, 270)">
+      <rect x="0" y="0" width="140" height="55" fill="#F8F6F0" stroke="#535C51" stroke-width="1"/>
+      <text x="70" y="22" text-anchor="middle" fill="#20251F" font-family="'IBM Plex Mono', monospace" font-size="8.5" font-weight="600">UART LOG STREAM</text>
+      <text x="70" y="36" text-anchor="middle" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="7.5">115200 8-N-1 / REQ-007</text>
+      <text x="70" y="48" text-anchor="middle" fill="#315BEA" font-family="'IBM Plex Mono', monospace" font-size="7.5">Web Dashboard Sync</text>
+    </g>
+  </g>
+
+  <!-- WIRING BUS LINES -->
+  <!-- Emergency wire: SW1 to MCU GPIO18 -->
+  <path d="M 230 150 L 305 150 L 305 185 L 320 185" fill="none" stroke="#D44B32" stroke-width="2"/>
+  <!-- Reset wire: SW2 to MCU GPIO19 -->
+  <path d="M 230 255 L 290 255 L 290 255 L 320 255" fill="none" stroke="#20251F" stroke-width="1.8"/>
+  <!-- Serial wire: Camera to MCU RXD0 -->
+  <path d="M 230 350 L 275 350 L 275 330 L 320 330" fill="none" stroke="#315BEA" stroke-width="1.5" stroke-dasharray="4 2"/>
+
+  <!-- Output wire: MCU GPIO22 to Red LED -->
+  <path d="M 560 185 L 610 185 L 610 135 L 650 135" fill="none" stroke="#D44B32" stroke-width="2"/>
+  <!-- Output wire: MCU GPIO23 to Buzzer -->
+  <path d="M 560 235 L 630 235 L 630 215 L 650 215" fill="none" stroke="#D44B32" stroke-width="2"/>
+  <!-- Output wire: MCU GPIO21 to Green LED -->
+  <path d="M 560 285 L 610 285 L 610 285 L 650 285" fill="none" stroke="#7C9862" stroke-width="1.8"/>
+  <!-- Telemetry wire: MCU TXD0 to UART Stream -->
+  <path d="M 560 355 L 620 355 L 620 355 L 650 355" fill="none" stroke="#535C51" stroke-width="1.5"/>
+
+  <!-- Safety Warning Stamp -->
+  <g transform="translate(50, 420)">
+    <rect x="0" y="0" width="380" height="50" fill="#FFF8F6" stroke="#D44B32" stroke-width="1"/>
+    <text x="15" y="20" fill="#D44B32" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600" letter-spacing="1">SAFETY NOTICE // HACKATHON PROTOTYPE ONLY</text>
+    <text x="15" y="36" fill="#535C51" font-family="'IBM Plex Mono', monospace" font-size="8">This is an educational prototype. Not a certified industrial emergency-stop system.</text>
+  </g>
+</svg>
